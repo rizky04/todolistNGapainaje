@@ -14,9 +14,8 @@ class CatatanController extends Controller
      */
     public function index()
     {
-        $data = Catatan::all();
 
-        return view('welcome', compact('data'));
+        return view('welcome');
     }
 
     /**
@@ -39,17 +38,7 @@ class CatatanController extends Controller
     {
         //
 
-        $simpan = Catatan::create([
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'prioritas' => $request->prioritas
-        ]);
 
-        if($simpan){
-            return response()->json(['text', 'Catatan berhasil disimpan'], 200);
-        }else{
-            return response()->json(['text', 'Catatan gagal disimpan'], 400);
-        }
     }
 
     /**
@@ -71,9 +60,7 @@ class CatatanController extends Controller
      */
     public function edit(Request $request)
     {
-        //
-        $data = Catatan::find($request->id);
-        return response()->json($data);
+
     }
 
     /**
@@ -85,13 +72,7 @@ class CatatanController extends Controller
      */
     public function update(Request $request)
     {
-        $data = Catatan::find($request->id);
-        $update = $data->update($request->all());
-        if($update){
-            return response()->json(['text'=>'Data Berhasil Disimpan'], 200);
-        }else{
-            return response()->json(['text'=>'Data Gagal Disimpan'], 400);
-        }
+
     }
 
     /**
@@ -102,22 +83,12 @@ class CatatanController extends Controller
      */
     public function destroy(Request $request)
     {
-        $data = Catatan::find($request->id);
-        $hapus = $data->delete($request->all());
 
-        if($hapus){
-            return response()->json(['text' => 'Data berhasil dihapus'], 200);
-        }else{
-            return response()->json(['text' => 'sistem error'], 400);
-        }
     }
 
     public function isDone(Catatan $catatan){
 
-        $catatan->update(['isDone' => true]);
 
-
-        return view('welcome');
 
     }
 }

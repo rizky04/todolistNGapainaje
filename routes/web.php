@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CatatanController;
+use App\Http\Controllers\CategoriController;
+use App\Http\Controllers\CatetanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CatatanController::class, 'index'])->name('index');
-Route::post('tambah', [CatatanController::class, 'store'])->name('tambah');
-Route::post('edit', [CatatanController::class, 'edit'])->name('edit');
-Route::post('update', [CatatanController::class, 'update'])->name('update');
-Route::post('delete', [CatatanController::class, 'destroy'])->name('delete');
-Route::patch('/{id}', [CatatanController::class, 'isDone']);
 
 
-
+Route::resource('/categori', CategoriController::class);
+Route::resource('/catetan', CatetanController::class);
